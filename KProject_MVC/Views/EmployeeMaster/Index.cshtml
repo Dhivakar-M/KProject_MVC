@@ -1,0 +1,345 @@
+﻿<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+@*<script src="~/Scripts/Employee/Employee.js"></script>*@
+<script src="~/Scripts/Employee/EmployeeMaster.js"></script>
+<style>
+    .modal-dialog,
+    .modal-content {
+        /* 80% of window height */
+        /*height: 90%;*/
+        width: 90%;
+    }
+
+    .modal-body {
+        /* 100% = dialog height, 120px = header + footer */
+        max-height: calc(100% - 140px);
+        /*overflow-y: scroll;*/
+    }
+</style>
+
+<div class="container">
+    <h2>Employees Record</h2>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New Employee</button><br /><br />
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>
+                    EmployeeID
+                </th>
+                <th>
+                    EmployeeCode
+                </th>
+                <th>
+                    EmployeeName
+                </th>
+                <th>
+                    EmpSurName
+                </th>
+                <th>
+                    DOB
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody class="tbody"></tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h4 class="modal-title" id="myModalLabel">Add Employee </h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group col-md-12 col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <label for="empCode">Employee Code</label>
+                                <input type="text" class="form-control" name="EmployeeCode" id="EmployeeCode">
+                            </div>
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <label for="empName">Employee Name</label>
+                                <input type="text" class="form-control" name="EmployeeName" id="EmployeeName">
+                            </div>
+
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <label for="empSurName">Employee Sur Name</label>
+                                <input type="text" class="form-control" name="EmpSurName" id="EmpSurName">
+                            </div>
+                            @*<div class="col-sm-12 col-md-3 col-lg-3">
+                    <label for="dob">Date of Birth</label>
+                    <input type="Date" class="form-control" name="empdob" id="empdob">
+                </div>*@
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <div class="card" style="width: 10rem;">
+                                    <img src="http://localhost:8080/101/photo.jpg" style="width:60px" class="card-img-top" alt="...">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @*<div class="form-group col-md-6 col-sm-6">
+            <div class="row">
+
+            </div>
+        </div>*@
+
+                    <div class="form-group col-md-12 col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <label for="nation">Nationality</label>
+                                @*<select id="nation" class="form-control" name="nation">
+                        <option value="">--Please choose --</option>
+                        <option value="India">India</option>
+                        <option value="Kuwait">Kuwait</option>
+                        <option value="UAE">UAE</option>
+                    </select>*@
+                                <input type="text" class="form-control" name="Nationality" id="Nationality">
+                            </div>
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <label for="joiningDate">Date of Join</label>
+                                <input type="Date" class="form-control" name="DOJ" id="DOJ">
+                            </div>
+
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <label for="lblempStatus">Employee Status</label>
+                                @*<select id="empStatus" class="form-control" name="empStatus">
+                        <option value="">--Please choose --</option>
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                    </select>*@
+                                <input type="text" class="form-control" name="EmpContract" id="EmpContract">
+
+                            </div>
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <label for="lblempDest">Designation</label>
+                                @*<select id="empDest" class="form-control" name="empDest">
+                        <option value="">--Please choose --</option>
+                        <option value="SE">SE</option>
+                        <option value="SSE">SSE</option>
+                        <option value="AssociateManager">Associate Manager</option>
+                        <option value="Manager">Manager</option>
+                    </select>*@
+                                <input type="text" class="form-control" name="Designation" id="Designation">
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="form-group col-md-12 col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <label for="lblLocation">Working Location</label>
+                                <select id="location" class="form-control" name="location">
+                                    <option value="">--Please choose --</option>
+                                    <option value="Ahmadi">Ahmadi</option>
+                                    <option value="Burgan">Burgan</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <label for="lblDept">Department</label>
+                                @*<select id="empDept" class="form-control" name="empDept">
+            <option value="">--Please choose --</option>
+            <option value="ElectricalInstrument">E&I</option>
+            <option value="Civil">Civil</option>
+            <option value="Mechanical">Mechanical</option>
+            <option value="Process">Process</option>
+            <option value="QA/QC">QA/QC</option>
+            <option value="Driver">Driver</option>
+            <option value="Helper">Helper</option>
+            <option value="Admin">Admin</option>
+            <option value="Finance">Finance</option>
+            <option value="Operation">Operation</option>
+        </select>*@
+                                <input type="text" class="form-control" name="Department" id="Department">
+                            </div>
+
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <label for="dob">date of birth</label>
+                                <input type="date" class="form-control" name="DOB" id="DOB">
+                            </div>
+
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <label for="lblVisaStatus">Visa status</label>
+                                <input type="text" class="form-control" name="VisaStatus" id="VisaStatus">
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-group col-md-12 col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <label for="lblInsurance">Insurance</label>
+                                <input type="text" class="form-control" name="Insurance" id="Insurance">
+                            </div>
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <label for="lblLicense">Driving License</label>
+                                <input type="text" class="form-control" name="DrivingLicense" id="DrivingLicense">
+                            </div>
+
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <label for="lblVaccine">VaccinationStatus</label>
+                                <input type="text" class="form-control" name="VaccinationStatus" id="VaccinationStatus">
+                            </div>
+
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                @*<label for="dob">Visa status</label>
+                                <input type="date" class="form-control" name="DOB" id="DOB">*@
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="form-group col-md-12 col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <label for="basicSala">Basic Salary</label>
+                                <input type="text" class="form-control" name="BasicSalary" id="BasicSalary">
+                            </div>
+
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <label for="lblAllow1">Allow1</label>
+                                <input type="text" class="form-control" name="Allow1" id="Allow1">
+                            </div>
+
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <label for="lblAllow2">Allow2</label>
+                                <input type="text" class="form-control" name="Allow2" id="Allow2">
+                            </div>
+
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <label for="lblTotel">Total</label>
+                                <input type="text" class="form-control" name="TotalAmount" id="TotalAmount">
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                    <br />
+
+                    <h4 class="modal-title" id="docDetail">Document Detail:</h4>
+
+                    <div class="form-group col-md-6 col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label for="passportNo">Passport No</label>
+                                <input type="text" class="form-control" name="PassportNo" id="PassportNo">
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label for="passExpDate">Passport Exp.Dt</label>
+                                <input type="date" class="form-control" name="PassportExpiryDate" id="PassportExpiryDate">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6 col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label for="civilId">Civil Id No</label>
+                                <input type="text" class="form-control" name="CivilIdNo" id="CivilIdNo">
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label for="civilExpDate">Civil Exp.Dt</label>
+                                <input type="date" class="form-control" name="CivilIdExpiryDate" id="CivilIdExpiryDate">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group col-md-6 col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label for="resiNo">Residence No</label>
+                                <input type="text" class="form-control" name="ResidenceNo" id="ResidenceNo">
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label for="resiDt">Residence Exp.Dt</label>
+                                <input type="date" class="form-control" name="ResidenceExpiryDate" id="ResidenceExpiryDate">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6 col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label for="resiNo">Gate Pass No</label>
+                                <input type="text" class="form-control" name="GatePassNo" id="GatePassNo">
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label for="gatePassDt">Gate Pass Exp.Dt</label>
+                                <input type="date" class="form-control" name="GatePassExpiryDate" id="GatePassExpiryDate">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6 col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label for="lblPermitNo">Work Permit No</label>
+                                <input type="text" class="form-control" name="WorkPermitNo" id="WorkPermitNo">
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label for="lblPermitDt">Work Permit Exp.Dt</label>
+                                <input type="date" class="form-control" name="WorkPermitExpiryDate" id="WorkPermitExpiryDate">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6 col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label for="lblPermitNo">Account No</label>
+                                <input type="text" class="form-control" name="AccountNo" id="AccountNo">
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label for="lblPermitDt">Account Details</label>
+                                <input type="text" class="form-control" name="AccountDetails" id="AccountDetails">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group col-md-6 col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label for="lblPermitNo">Leave</label>
+                                <input type="text" class="form-control" name="Leave" id="Leave">
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label for="lblPermitDt">Leave Details</label>
+                                <input type="text" class="form-control" name="LeaveDetails" id="LeaveDetails">
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <div style="float: right;"></div>
+                <button type="button" class="btn btn-primary" id="btnAdd" onclick="return Add();">Add</button>
+                <button type="button" class="btn btn-primary" id="btnUpdate" style="display:none;" onclick="Update();">Update</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

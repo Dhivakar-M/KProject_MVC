@@ -1,0 +1,379 @@
+﻿<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/Employee/Employee.js"></script>
+
+<style>
+    .modal-dialog,
+    .modal-content {
+        /* 80% of window height */
+        /*height: 90%;*/
+        width: 90%;
+    }
+
+    .modal-body {
+        /* 100% = dialog height, 120px = header + footer */
+        max-height: calc(100% - 140px);
+        /*overflow-y: scroll;*/
+    }
+</style>
+
+@*<div class="container">
+        <h2>Employees Record</h2>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New Employee</button><br /><br />
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Age
+                    </th>
+                    <th>
+                        State
+                    </th>
+                    <th>
+                        Country
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="tbody"></tbody>
+        </table>
+    </div>*@
+@*<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 class="modal-title" id="myModalLabel">Add Employee</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="EmployeeId">ID</label>
+                            <input type="text" class="form-control" id="EmployeeID" placeholder="Id" disabled="disabled" />
+                        </div>
+                        <div class="form-group">
+                            <label for="Name">Name</label>
+                            <input type="text" class="form-control" id="Name" placeholder="Name" />
+                        </div>
+                        <div class="form-group">
+                            <label for="Age">Age</label>
+                            <input type="text" class="form-control" id="Age" placeholder="Age" />
+                        </div>
+                        <div class="form-group">
+                            <label for="State">State</label>
+                            <input type="text" class="form-control" id="State" placeholder="State" />
+                        </div>
+                        <div class="form-group">
+                            <label for="Country">Country</label>
+                            <input type="text" class="form-control" id="Country" placeholder="Country" />
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="btnAdd" onclick="return Add();">Add</button>
+                    <button type="button" class="btn btn-primary" id="btnUpdate" style="display:none;" onclick="Update();">Update</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+<div class="container">
+    <h2>Employees Record</h2>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New Employee</button><br /><br />
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Age
+                </th>
+                <th>
+                    State
+                </th>
+                <th>
+                    Country
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody class="tbody"></tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h4 class="modal-title" id="myModalLabel">Add Employee </h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group col-md-12 col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <label for="empCode">Employee Code</label>
+                                <input type="text" class="form-control" name="employeeCode" id="employeeCode">
+                            </div>
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <label for="empName">Employee Name</label>
+                                <input type="text" class="form-control" name="employeeName" id="employeeName">
+                            </div>
+
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <label for="empSurName">Employee Sur Name</label>
+                                <input type="text" class="form-control" name="emplSurName" id="emplSurName">
+                            </div>
+                            @*<div class="col-sm-12 col-md-3 col-lg-3">
+                                    <label for="dob">Date of Birth</label>
+                                    <input type="Date" class="form-control" name="empdob" id="empdob">
+                                </div>*@
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <div class="card" style="width: 10rem;">
+                                    <img src="~/Images/Profile.jfif" style="width:60px" class="card-img-top" alt="...">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @*<div class="form-group col-md-6 col-sm-6">
+                            <div class="row">
+
+                            </div>
+                        </div>*@
+
+                    <div class="form-group col-md-12 col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <label for="nation">Nationality</label>
+                                <select id="nation" class="form-control" name="nation">
+                                    <option value="">--Please choose --</option>
+                                    <option value="India">India</option>
+                                    <option value="Kuwait">Kuwait</option>
+                                    <option value="UAE">UAE</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <label for="joiningDate">Date of Join</label>
+                                <input type="Date" class="form-control" name="empJoinDate" id="empJoinDate">
+                            </div>
+
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <label for="lblempStatus">Employee Status</label>
+                                <select id="empStatus" class="form-control" name="empStatus">
+                                    <option value="">--Please choose --</option>
+                                    <option value="Active">Active</option>
+                                    <option value="Inactive">Inactive</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <label for="lblempDest">Designation</label>
+                                <select id="empDest" class="form-control" name="empDest">
+                                    <option value="">--Please choose --</option>
+                                    <option value="SE">SE</option>
+                                    <option value="SSE">SSE</option>
+                                    <option value="AssociateManager">Associate Manager</option>
+                                    <option value="Manager">Manager</option>
+                                </select>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="form-group col-md-12 col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <label for="lblLocation">Working Location</label>
+                                <select id="location" class="form-control" name="location">
+                                    <option value="">--Please choose --</option>
+                                    <option value="Ahmadi">Ahmadi</option>
+                                    <option value="Burgan">Burgan</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <label for="lblDept">Department</label>
+                                <select id="empDept" class="form-control" name="empDept">
+                                    <option value="">--Please choose --</option>
+                                    <option value="Electrical">Electrical</option>
+                                    <option value="Instrument">Instrument</option>
+                                    <option value="Civil">Civil</option>
+                                    <option value="Mechanical">Mechanical</option>
+                                    <option value="Process">Process</option>
+                                    <option value="QA/QC">QA/QC</option>
+                                    <option value="Driver">Driver</option>
+                                    <option value="Helper">Helper</option>
+                                    <option value="Admin">Admin</option>
+                                    <option value="Finance">Finance</option>
+                                    <option value="Operation">Operation</option>
+                                </select>
+                            </div>
+
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <label for="dob">date of birth</label>
+                                    <input type="date" class="form-control" name="empdob" id="empdob">
+                                </div>
+                            </div>
+                    </div>
+
+
+
+
+
+                    <div class="form-group col-md-12 col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <label for="basicSala">Basic Salary</label>
+                                <input type="text" class="form-control" name="sala" id="sala">
+                            </div>
+
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <label for="basicSala">Allow1</label>
+                                <input type="text" class="form-control" name="allow1" id="allow1">
+                            </div>
+
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <label for="basicSala">Allow2</label>
+                                <input type="text" class="form-control" name="sala" id="allow2">
+                            </div>
+
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <label for="basicSala">Total</label>
+                                <input type="text" class="form-control" name="sala" id="sala">
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                    <br />
+
+                    <h4 class="modal-title" id="docDetail">Document Detail:</h4>
+
+                    <div class="form-group col-md-6 col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label for="passportNo">Passport No</label>
+                                <input type="text" class="form-control" name="passport" id="passport">
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label for="passExpDate">Passport Exp.Dt</label>
+                                <input type="date" class="form-control" name="passexpDate" id="passexpDate">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6 col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label for="civilId">Civil Id No</label>
+                                <input type="text" class="form-control" name="civilId" id="civilId">
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label for="civilExpDate">Civil Exp.Dt</label>
+                                <input type="date" class="form-control" name="civilExpDt" id="civilExpDt">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group col-md-6 col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label for="resiNo">Residence No</label>
+                                <input type="text" class="form-control" name="residenceNo" id="residenceNo">
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label for="resiDt">Residence Exp.Dt</label>
+                                <input type="date" class="form-control" name="residenceExpDt" id="residenceExpDt">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6 col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label for="resiNo">Gate Pass No</label>
+                                <input type="text" class="form-control" name="gatePassNo" id="gatePassNo">
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label for="gatePassDt">Gate Pass Exp.Dt</label>
+                                <input type="date" class="form-control" name="gatePassExpDt" id="gatePassExpDt">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6 col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label for="lblPermitNo">Work Permit No</label>
+                                <input type="text" class="form-control" name="permitNo" id="permitNo">
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label for="lblPermitDt">Work Permit Exp.Dt</label>
+                                <input type="date" class="form-control" name="permitDt" id="permitDt">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6 col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label for="lblPermitNo">Account No</label>
+                                <input type="text" class="form-control" name="permitNo" id="permitNo">
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label for="lblPermitDt">Account Details</label>
+                                <input type="date" class="form-control" name="permitDt" id="permitDt">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group col-md-6 col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label for="lblPermitNo">Leave</label>
+                                <input type="text" class="form-control" name="permitNo" id="permitNo">
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label for="lblPermitDt">Leave Details</label>
+                                <input type="date" class="form-control" name="permitDt" id="permitDt">
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <div style="float: right;"></div>
+                <button type="button" class="btn btn-primary" id="btnAdd" onclick="return Add();">Add</button>
+                <button type="button" class="btn btn-primary" id="btnUpdate" style="display:none;" onclick="Update();">Update</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
