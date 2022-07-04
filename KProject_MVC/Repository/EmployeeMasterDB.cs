@@ -11,7 +11,7 @@ namespace KProject_MVC.Repository
     {
         //declare connection string  
         string cs = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
-
+        string EmpImageBase = ConfigurationManager.AppSettings["EmployeeImageBasePath"];
         //Return list of all Employees  
         public List<EmployeeMaster> ListAll()
         {
@@ -33,7 +33,8 @@ namespace KProject_MVC.Repository
                             EmployeeName = Convert.ToString(rdr["EmployeeName"]),
                             EmpSurName = Convert.ToString(rdr["EmpSurName"]),
                             DOB = Convert.ToString(rdr["DOB"]),
-
+                            WorkLocation = Convert.ToString(rdr["WorkLocation"]),
+                            EmployeeImgPath = GetEmployeePath(Convert.ToString(rdr["EmployeeCode"])),
                             Nationality = Convert.ToString(rdr["Nationality"]),
                             DOJ = Convert.ToString(rdr["DOJ"]),
                             EmpContract = Convert.ToString(rdr["EmpContract"]),
@@ -65,7 +66,6 @@ namespace KProject_MVC.Repository
                             AccountDetails = Convert.ToString(rdr["AccountDetails"]),
                             Leave = Convert.ToString(rdr["Leave"]),
                             LeaveDetails = Convert.ToString(rdr["LeaveDetails"])
-
                         });
                     }
                     return lst;
@@ -73,7 +73,6 @@ namespace KProject_MVC.Repository
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
@@ -169,6 +168,12 @@ namespace KProject_MVC.Repository
                 i = com.ExecuteNonQuery();
             }
             return i;
+        }
+
+        private string GetEmployeePath(string code)
+        {
+            string retValue = EmpImageBase + code + "/" + "photo.jpg";
+            return retValue;
         }
     }
 }

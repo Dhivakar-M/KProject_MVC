@@ -151,7 +151,9 @@ function getbyID(EmpID) {
             $('#EmployeeName').val(result.EmployeeName);
             $('#EmpSurName').val(result.EmpSurName);
             $('#DOB').val(result.DOB);
-
+            document.getElementById('EmployeePhoto').src = result.EmployeeImgPath;   
+          
+            $('#location').val(result.WorkLocation);
             $('#Nationality').val(result.Nationality);
             $('#DOJ').val(result.DOJ);
             $('#EmpContract').val(result.EmpContract);

@@ -40,6 +40,7 @@ namespace KProject_MVC.Models
         public string Leave { get; set; }
         public string LeaveDetails { get; set; }
         public string EmployeeImgPath { get; set; }
+        public string WorkLocation { get; set; }
 
 
 
