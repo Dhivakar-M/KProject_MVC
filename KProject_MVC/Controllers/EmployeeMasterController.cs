@@ -2,8 +2,7 @@
 using KProject_MVC.Repository;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using KProject_MVC.Report;
 using System.Web.Mvc;
 
 namespace KProject_MVC.Controllers
@@ -37,6 +36,48 @@ namespace KProject_MVC.Controllers
         public JsonResult Delete(int ID)
         {
             return Json(empDB.Delete(ID), JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult QuotationReport()
+        {
+            var quotationReportModel = new QuotationReportModel
+            {
+                FromCompanyName = "Spetco International Petroleum",
+                FromEmail = "spetco@gmail.com",
+                FromDate = Convert.ToDateTime("03.04.2022"),
+                ToCompanyName = "Spetco International Petroleum",
+                ToEmail = "sales@uogei.com",
+                ToDate = Convert.ToDateTime("04.04.2022"),
+                PriceSummaryList = GetPriceSummary()
+            };
+            PDFReport objPDFReport=new PDFReport();
+            byte[] quotationBytes = objPDFReport.PrepareQuotatioReport(quotationReportModel);
+            return File(quotationBytes,"application/pdf");
+        }
+
+        private List<PriceSummary> GetPriceSummary()
+        {
+            var lstPriceSummary = new List<PriceSummary>();
+            var summary = new PriceSummary
+            {
+                SerialNo = 1,
+                Description = "Civil works of Crash Barriers",
+                Quantity = 500,
+                LumpSum = 700000,
+                Remarks = "Civil"
+            };
+            lstPriceSummary.Add(summary);
+            var summary1 = new PriceSummary
+            {
+                SerialNo = 2,
+                Description = "Eleactrical works",
+                Quantity = 200,
+                LumpSum = 500000,
+                Remarks = "Eleactrical"
+            };
+            lstPriceSummary.Add(summary1);
+
+            return lstPriceSummary;
         }
     }
 }
