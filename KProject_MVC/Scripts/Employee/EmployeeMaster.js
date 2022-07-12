@@ -57,7 +57,6 @@ function Add() {
         Department: $('#Department').val(), 
         Insurance: $('#Insurance').val(),
 
-
         DrivingLicense: $('#DrivingLicense').val(),
         VaccinationStatus: $('#VaccinationStatus').val(),
         BasicSalary: $('#BasicSalary').val(),
@@ -81,6 +80,7 @@ function Add() {
         AccountDetails: $('#AccountDetails').val(),
         Leave: $('#Leave').val(),
         LeaveDetails: $('#LeaveDetails').val(),
+        WorkLocation: $('#location').val(),
     };
     $.ajax({
         url: "/EmployeeMaster/Add",
@@ -159,7 +159,6 @@ function getbyID(EmpID) {
             $('#EmpContract').val(result.EmpContract);
             $('#Designation').val(result.Designation);
             $('#VisaStatus').val(result.VisaStatus);
-
 
             $('#Department').val(result.Department);
             $('#Insurance').val(result.Insurance);
@@ -244,8 +243,7 @@ function Update() {
         AccountDetails: $('#AccountDetails').val(),
         Leave: $('#Leave').val(),
         LeaveDetails: $('#LeaveDetails').val(),
-  
-
+        WorkLocation: $('#location').val(),
     };
     $.ajax({
         url: "/EmployeeMaster/Update",
