@@ -157,11 +157,14 @@
     </Compile>
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\EmployeeMaster.cs" />
+    <Compile Include="Models\PriceSummary.cs" />
+    <Compile Include="Models\Quotation.cs" />
     <Compile Include="Models\QuotationReportModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Report\PDFReport.cs" />
     <Compile Include="Repository\EmployeeDB.cs" />
     <Compile Include="Repository\EmployeeMasterDB.cs" />
+    <Compile Include="Repository\QuotationDB.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />

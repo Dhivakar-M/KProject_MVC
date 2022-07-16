@@ -55,10 +55,10 @@ namespace KProject_MVC.Controllers
             return File(quotationBytes,"application/pdf");
         }
 
-        private List<PriceSummary> GetPriceSummary()
+        private List<PriceSummary1> GetPriceSummary()
         {
-            var lstPriceSummary = new List<PriceSummary>();
-            var summary = new PriceSummary
+            var lstPriceSummary = new List<PriceSummary1>();
+            var summary = new PriceSummary1
             {
                 SerialNo = 1,
                 Description = "Civil works of Crash Barriers",
@@ -67,7 +67,7 @@ namespace KProject_MVC.Controllers
                 Remarks = "Civil"
             };
             lstPriceSummary.Add(summary);
-            var summary1 = new PriceSummary
+            var summary1 = new PriceSummary1
             {
                 SerialNo = 2,
                 Description = "Eleactrical works",

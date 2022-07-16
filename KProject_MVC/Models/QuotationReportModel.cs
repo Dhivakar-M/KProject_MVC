@@ -14,10 +14,10 @@ namespace KProject_MVC.Models
         public string ToCompanyName { get; set; }
         public string ToEmail { get; set; }
         public DateTime ToDate { get; set; }
-        public List<PriceSummary> PriceSummaryList { get; set; }
+        public List<PriceSummary1> PriceSummaryList {get; set; }
     }
 
-    public class PriceSummary
+    public class PriceSummary1
     {
         public int SerialNo { get; set; }
         public string Description { get; set; }
