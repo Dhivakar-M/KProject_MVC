@@ -21,127 +21,27 @@
     }
 </style>
 
-<div class="container" style="margin-top:50px">
-    <div class="row">
-        <form>
-             
-            <h3 style="text-align:center">Quotation</h3>
-            <div class="form-group col-md-12 col-sm-12">
-                <div class="row">
-                    <div class="col-sm-12 col-md-2 col-lg-2">
-                        <label for="lblEnquiry">Enquiry:</label>
-                    </div>
-                    <div class="col-sm-12 col-md-3 col-lg-3">
-                        <input type="Date" class="form-control" name="enqDate" id="enqDate">
-                    </div>
-                    <div class="col-sm-12 col-md-6 col-lg-6">
-                        <input type="text" class="form-control " name="enqRefNo" id="enqRefNo" />
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group col-md-12 col-sm-12">
-                <div class="row">
-                    <div class="col-sm-12 col-md-2 col-lg-2">
-                        <label for="lblSupplierName">Supplier Name</label>
-                    </div>
-
-                    <div class="col-sm-12 col-md-10 col-lg-10">
-                        <input type="text" name="txtSupplierName" id="txtSupplierName" class="form-control" style="width:100% !important" />
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="form-group col-md-12">
-                <div class="row">
-                    <div class="col-sm-12 col-md-2 col-lg-2">
-                        <label for="lblAddressline1">Address Line 1</label>
-                    </div>
-
-                    <div class="col-sm-12 col-md-10 col-lg-10">
-                        <textarea class="form-control" id="txtAddressline1" name="txtAddressline1"></textarea>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group col-md-12">
-                <div class="row">
-                    <div class="col-sm-12 col-md-2 col-lg-2">
-                        <label for="lblAddressline2">Address Line 2</label>
-                    </div>
-
-                    <div class="col-sm-12 col-md-10 col-lg-10">
-                        <textarea class="form-control" id="txtAddressline2" name="txtAddressline2"></textarea>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group col-md-12 col-sm-12">
-                <div class="row">
-                    <div class="col-sm-12 col-md-2 col-lg-2">
-                        <label for="lblEmail">Email:</label>
-                    </div>
-                    <div class="col-sm-12 col-md-3 col-lg-3">
-                        <input type="email" class="form-control" name="txtEmail" id="txtEmail">
-                    </div>
-                    <div class="col-sm-12 col-md-1 col-lg-1">
-                        <label for="lblPhone">Phone:</label>
-                    </div>
-                    <div class="col-sm-12 col-md-2 col-lg-2">
-                        <input type="text" class="form-control " name="txtPhone" id="txtPhone" />
-                    </div>
-                    <div class="col-sm-12 col-md-1 col-lg-1">
-                        <label for="lblMobile">Mobile:</label>
-                    </div>
-                    <div class="col-sm-12 col-md-3 col-lg-3">
-                        <input type="number" class="form-control " name="txtMobile" id="txtMobile" />
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group col-md-12">
-                <div class="row">
-                    <div class="col-sm-12 col-md-2 col-lg-2">
-                        <label for="lblsupplierName">Subject</label>
-                    </div>
-
-                    <div class="col-sm-12 col-md-10 col-lg-10">
-                        <input type="text" name="txtSubject" id="txtSubject" class="form-control" style="width:100%" />
-                    </div>
-                </div>
-            </div>
-            <div class="form-group col-md-12">
-                <div class="row">
-                    <div class="col-sm-12 col-md-2 col-lg-2">
-                        <label for="lblsupplierName">Description</label>
-                    </div>
-
-                    <div class="col-sm-12 col-md-10 col-lg-10">
-                        <input type="text" name="txtDescription" id="txtDescription" class="form-control" style="width:100%" />
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-    <h3>Summary List</h3>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New Summary</button><br /><br />
+<div class="container">
+    <h2>Quotation</h2>
+    @*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New Employee</button><br />*@
+    <br />
     <table class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>
-                    S.No
+                    Enquiry date
                 </th>
                 <th>
-                    Description
+                    Enquiry Ref Number
                 </th>
                 <th>
-                    QTY
+                    Supplier Name
                 </th>
                 <th>
-                    Rate
+                    Email
                 </th>
                 <th>
-                    Remarks
+                    Subject
                 </th>
                 <th>
                     Action
@@ -152,50 +52,6 @@
     </table>
 </div>
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">×</button>
-                <h4 class="modal-title" id="myModalLabel">Add Summary </h4>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group col-md-12 col-sm-12">
-                        <div class="row">
-                            <div class="col-sm-12 col-md-6 col-lg-6">
-                                <label for="lblDescription">Description</label>
-                                <input type="text" class="form-control" name="txtDescription" id="txtDescription">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12 col-md-6 col-lg-6">
-                                <label for="lblQuantity">Quantity</label>
-                                <input type="text" class="form-control" name="txtQuantity" id="txtQuantity">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12 col-md-6 col-lg-6">
-                                <label for="lblRate">Rate</label>
-                                <input type="text" class="form-control" name="txtRate" id="txtRate">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12 col-md-6 col-lg-6">
-                                <label for="lblRemarks">Remarks</label>
-                                <input type="text" class="form-control" name="txtRemarks" id="txtRemarks">
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <div style="float: right;"></div>
-                <button type="button" class="btn btn-primary" id="btnAdd" onclick="return Add();">Add</button>
-                <button type="button" class="btn btn-primary" id="btnUpdate" style="display:none;" onclick="Update();">Update</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
+
+
 

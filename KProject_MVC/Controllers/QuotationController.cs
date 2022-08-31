@@ -16,10 +16,25 @@ namespace KProject_MVC.Controllers
             return View();
         }
 
-        public JsonResult SearchQuatation(int QuotationId)
+        public JsonResult List()
+        {
+            return Json(objQuotationDB.ListAll(), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult Search(int QuotationId)
         {
             var Quotation = objQuotationDB.GetQuotation(QuotationId);
             return Json(Quotation, JsonRequestBehavior.AllowGet);
         }
+       
+        public ActionResult AddEditQuotation(int? quotationId)
+        {
+            return View();
+        }
+
+        //public JsonResult Add(Quotation quotation)
+        //{
+        //    return Json(objQuotationDB.Add(quotation), JsonRequestBehavior.AllowGet);
+        //}
     }
 }

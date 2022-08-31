@@ -7,7 +7,7 @@ $(document).ready(function () {
 //Load Data function  
 function loadData() {
     $.ajax({
-        url: "/EmployeeMaster/List",
+        url: "/Quotation/List",
         type: "GET",
         contentType: "application/json;charset=utf-8",
         dataType: "json",
@@ -15,14 +15,15 @@ function loadData() {
             var html = '';
             $.each(result, function (key, item) {
                 html += '<tr>';
-                html += '<td>' + item.EmployeeID + '</td>';
-                html += '<td>' + item.EmployeeCode + '</td>';
-                html += '<td>' + item.EmployeeName + '</td>';
-                html += '<td>' + item.EmpSurName + '</td>';
-                html += '<td>' + item.DOB + '</td>';
-                //html += '<td>' + item.Nationality + '</td>';
-                //html += '<td>' + item.DOJ + '</td>';
-                html += '<td><a href="#" onclick="return getbyID(' + item.EmployeeID + ')">Edit</a> | <a href="#" onclick="Delele(' + item.EmployeeID + ')">Delete</a></td>';
+                html += '<td>' + item.EnquiryDate + '</td>';
+                html += '<td>' + item.EnquiryRefNumber + '</td>';
+                html += '<td>' + item.SupplierName + '</td>';
+                html += '<td>' + item.Email + '</td>';
+                html += '<td>' + item.Subject + '</td>';
+                html += '<td><a href="#" onclick="return navigatetoAddEditQuotation(' + item.QuotationId + ')">Edit</a> | <a href="#" onclick="Delele(' + item.QuotationId + ')">Delete</a></td>';
+                //html += '<td><a href="~/Quotation/AddEditQuotation?quotationId=@item.quotationId">Edit</a> | <a href="#" onclick="Delele(' + item.QuotationId + ')">Delete</a></td>';
+                
+
                 html += '</tr>';
             });
             $('.tbody').html(html);
@@ -37,10 +38,10 @@ function loadData() {
 function Add() {
 
     alert('Add invoked');
-    var res = validate();
-    if (res == false) {
-        return false;
-    }
+    //var res = validate();
+    //if (res == false) {
+    //    return false;
+    //}
     var empObj = {
         EmployeeID: $('#EmployeeID').val(),
         EmployeeCode: $('#EmployeeCode').val(),
@@ -307,7 +308,7 @@ function Delele(ID) {
     var ans = confirm("Are you sure you want to delete this Record?");
     if (ans) {
         $.ajax({
-            url: "/EmployeeMaster/Delete/" + ID,
+            url: "/Quotation/Delete/" + ID,
             type: "POST",
             contentType: "application/json;charset=UTF-8",
             dataType: "json",
@@ -437,3 +438,7 @@ function validate() {
     }
     return isValid;
 }  
+
+function navigatetoAddEditQuotation(quotationId) {
+    window.location.href = '/Quotation/AddEditQuotation/' + quotationId;
+}
