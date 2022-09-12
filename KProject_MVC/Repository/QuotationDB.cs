@@ -87,66 +87,38 @@ namespace KProject_MVC.Repository
             }
         }
 
-        //public int Add(Quotation objQuotation)
-        //{
-        //    int i;
-        //    using (SqlConnection con = new SqlConnection(cs))
-        //    {
-        //        con.Open();
-        //        var com = GetSqlCommand(con, emp, "Insert");
-        //        i = com.ExecuteNonQuery();
-        //    }
-        //    return i;
-        //}
+        public int Add(Quotation objQuotation)
+        {
+            int i;
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                con.Open();
+                var com = GetSqlCommand(con, objQuotation, "Insert");
+                i = com.ExecuteNonQuery();
+            }
+            return i;
+        }
 
-        //private SqlCommand GetSqlCommand(SqlConnection con, EmployeeMaster emp, string action)
-        //{
-        //    SqlCommand com = new SqlCommand("InsertUpdateEmployee", con)
-        //    {
-        //        CommandType = CommandType.StoredProcedure
-        //    };
-        //    com.Parameters.AddWithValue("@EmployeeID", emp.EmployeeID);
-        //    com.Parameters.AddWithValue("@EmployeeCode", emp.EmployeeCode);
-        //    com.Parameters.AddWithValue("@EmployeeName", emp.EmployeeName);
-        //    com.Parameters.AddWithValue("@EmpSurName", emp.EmpSurName);
-        //    com.Parameters.AddWithValue("@DOB", emp.DOB);
-
-        //    com.Parameters.AddWithValue("@Nationality", emp.Nationality);
-        //    com.Parameters.AddWithValue("@DOJ", emp.DOJ);
-        //    com.Parameters.AddWithValue("@EmpContract", emp.EmpContract);
-        //    com.Parameters.AddWithValue("@Designation", emp.Designation);
-        //    com.Parameters.AddWithValue("@VisaStatus", emp.VisaStatus);
-
-        //    com.Parameters.AddWithValue("@Department", emp.Department);
-        //    com.Parameters.AddWithValue("@Insurance", emp.Insurance);
-
-        //    com.Parameters.AddWithValue("@DrivingLicense", emp.DrivingLicense);
-        //    com.Parameters.AddWithValue("@VaccinationStatus", emp.VaccinationStatus);
-        //    com.Parameters.AddWithValue("@BasicSalary", emp.BasicSalary);
-        //    com.Parameters.AddWithValue("@Allow1", emp.Allow1);
-        //    com.Parameters.AddWithValue("@Allow2", emp.Allow2);
-
-        //    com.Parameters.AddWithValue("@TotalAmount", emp.TotalAmount);
-        //    com.Parameters.AddWithValue("@PassportNo", emp.PassportNo);
-        //    com.Parameters.AddWithValue("@PassportExpiryDate", emp.PassportExpiryDate);
-        //    com.Parameters.AddWithValue("@CivilIdNo", emp.CivilIdNo);
-        //    com.Parameters.AddWithValue("@CivilIdExpiryDate", emp.CivilIdExpiryDate);
-
-        //    com.Parameters.AddWithValue("@ResidenceNo", emp.ResidenceNo);
-        //    com.Parameters.AddWithValue("@ResidenceExpiryDate", emp.ResidenceExpiryDate);
-        //    com.Parameters.AddWithValue("@GatePassNo", emp.GatePassNo);
-        //    com.Parameters.AddWithValue("@GatePassExpiryDate", emp.GatePassExpiryDate);
-        //    com.Parameters.AddWithValue("@WorkPermitNo", emp.WorkPermitNo);
-
-        //    com.Parameters.AddWithValue("@WorkPermitExpiryDate", emp.WorkPermitExpiryDate);
-        //    com.Parameters.AddWithValue("@AccountNo", emp.AccountNo);
-        //    com.Parameters.AddWithValue("@AccountDetails", emp.AccountDetails);
-        //    com.Parameters.AddWithValue("@Leave", emp.Leave);
-        //    com.Parameters.AddWithValue("@LeaveDetails", emp.LeaveDetails);
-        //    com.Parameters.AddWithValue("@WorkLocation", emp.WorkLocation);
-        //    com.Parameters.AddWithValue("@Action", action);
-        //    return com;
-        //}
+        private SqlCommand GetSqlCommand(SqlConnection con, Quotation objQuotation, string action)
+        {
+            SqlCommand com = new SqlCommand("InsertUpdateQuotation", con)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+            com.Parameters.AddWithValue("@QuotationId", objQuotation.QuotationId);
+            com.Parameters.AddWithValue("@EnquiryDate", objQuotation.EnquiryDate);
+            com.Parameters.AddWithValue("@EnquiryRefNumber", objQuotation.EnquiryRefNumber);
+            com.Parameters.AddWithValue("@SupplierName", objQuotation.SupplierName);
+            com.Parameters.AddWithValue("@AddressLine1", objQuotation.AddressLine1);
+            com.Parameters.AddWithValue("@AddressLine2", objQuotation.AddressLine2);
+            com.Parameters.AddWithValue("@Email", objQuotation.Email);
+            com.Parameters.AddWithValue("@Mobile", objQuotation.Mobile);
+            com.Parameters.AddWithValue("@Phone", objQuotation.Phone);
+            com.Parameters.AddWithValue("@Subject", objQuotation.Subject);
+            com.Parameters.AddWithValue("@Description", objQuotation.Description);
+            com.Parameters.AddWithValue("@Action", action);
+            return com;
+        }
 
         public List<PriceSummary> GetPriceSummaryList(int QuotationId)
         {

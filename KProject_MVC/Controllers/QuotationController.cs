@@ -1,4 +1,5 @@
-﻿using KProject_MVC.Repository;
+﻿using KProject_MVC.Models;
+using KProject_MVC.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,9 +33,9 @@ namespace KProject_MVC.Controllers
             return View();
         }
 
-        //public JsonResult Add(Quotation quotation)
-        //{
-        //    return Json(objQuotationDB.Add(quotation), JsonRequestBehavior.AllowGet);
-        //}
+        public JsonResult Add(Quotation objQuotation)
+        {
+            return Json(objQuotationDB.Add(objQuotation), JsonRequestBehavior.AllowGet);
+        }
     }
 }
